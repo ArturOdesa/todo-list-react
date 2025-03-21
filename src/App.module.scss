@@ -1,25 +1,18 @@
 .main {
-    border: solid red;
     background-color: #ebebeb;
     height: 100vh;
+    
     input {
         border: solid 1px black;
     }
 }
 
 .container {
-    border: solid aqua;
     padding: 20px 20px 0;
     max-width: 1440px;
-    // margin: 0 auto;
-}
-
-.main__header {
-    border: solid purple;
 }
 
 .header__top {
-    border: solid green;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
@@ -28,29 +21,38 @@
     .title {
         font-weight: 400;
     }
+
+    .date {
+        color: #809b9d;
+    }
 }
 
 .header__bottom {
-    // border: solid gold;
     display: flex;
 
     input {
         border: none;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid #00000078;
         flex-grow: 1;
         padding: 10px 0;
     }
 
     button {
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid #00000078;
         background-color: #00a97c;
         color: #fff;
-        // width: 10%;
         padding: 0 15px;
         font-weight: bold;
+        transition: 0.2s ease-in;
 
         &:hover {
-
+            background-color: #008360;
         }
     }
 }
+
+
+
+
+
+
