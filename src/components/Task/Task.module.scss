@@ -1,0 +1,51 @@
+.task {
+    background-color: #cdcdcdd4;
+    color: #536667;
+    padding: 16px 16px;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.completed {
+    text-decoration: line-through;
+
+    .remove_btn {
+        text-decoration: none !important;
+    }
+}
+
+.remove_btn {
+    margin-left: auto;
+    text-decoration: none !important;
+    font-size: 10px;
+    font-style: italic;
+    color: #ff0000;
+}
+
+.task__done {
+    position: relative;
+    visibility: hidden;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        width: 18px;
+        height: 18px;
+        background-color: transparent;
+        position: absolute;
+        visibility: visible;
+        border: solid black 2px;
+        top: -25%;
+        right: -25%;
+    }
+
+    &:checked::after {
+        width: 19px;
+        height: 19px;
+        background-color: transparent;
+        background-image: url('../../assets/icons/task-completed.svg');
+        background-size: cover;
+        border: none;
+    }
+}
