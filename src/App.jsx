@@ -1,50 +1,25 @@
 import styles from './App.module.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
-import { v4 as uuid4v } from 'uuid';
 import List from './containers/List/List';
+import { useTasksContext } from './context/TasksContext';
 
 
 function App() {
-  
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    if (savedTasks) {
-      return JSON.parse(savedTasks);
-    } else {
-      return [];
-    }
-  });
+
+  const { tasks, addTask } = useTasksContext();
+
   const [taskName, setTaskName] = useState('');
 
   const date = new Date().toLocaleDateString('en-En', { day: 'numeric', month: 'long', year: 'numeric' });
 
-  useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
-
   const addTaskHandler = () => {
-    if (taskName.trim()) {
-      const newTask = {
-        'id': uuid4v(),
-        'name': taskName.trim(),
-        'completed': false,
-      };
-      setTasks([...tasks, newTask]);
-      setTaskName('');
-    }
+    addTask(taskName);
+    setTaskName('');
   };
+  
 
-  const removeTaskHandler = (id) => {
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    setTasks(updatedTasks);
-  };
-
-  const changeStateHandler = (id) => {
-    setTasks(tasks.map(task =>
-      task.id === id ? { ...task, completed: !task.completed } : task
-    ));
-  }
+  
 
   return (
     <>
@@ -69,7 +44,7 @@ function App() {
         <section>
           <div className={styles.container}>
             <p hidden={tasks.length}>No any tasks...</p>
-            <List tasks={tasks} changeState={changeStateHandler} removeTask={removeTaskHandler} />
+            <List />
           </div>
         </section>
       </main>
